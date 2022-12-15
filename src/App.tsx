@@ -12,7 +12,7 @@ import {
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
-import CustomersList from "./pages/customers/list";
+import { create, list } from "./pages/customers";
 
 export default () => {
   const globalStyles = {
@@ -31,7 +31,7 @@ export default () => {
           Layout={Layout}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
-          resources={[{ name: "customers", list: CustomersList }]}
+          resources={[{ name: "customers", list: list, create: create }]}
         />
       </RefineSnackbarProvider>
     </ThemeProvider>

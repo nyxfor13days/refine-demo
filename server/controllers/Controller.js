@@ -16,6 +16,20 @@ module.exports = {
     res.json(customers);
   },
 
+  showCustomer: (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-  With, Content-Type, Accept"
+    );
+    const customers = getCustomers();
+    const id = req.params.id;
+    const customer = customers.find((customer) => {
+      return customer.id === id;
+    });
+    res.json(customer);
+  },
+
   addCustomer: (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
