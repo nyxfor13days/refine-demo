@@ -11,7 +11,7 @@ const columns: GridColumns<CustomerI> = [
   { field: "zip", headerName: "Zip Code", flex: 1, minWidth: 200 },
 ];
 
-const CustomersList = () => {
+const list = () => {
   const { dataGridProps } = useDataGrid<CustomerI>();
 
   return (
@@ -21,4 +21,4 @@ const CustomersList = () => {
   );
 };
 
-export default CustomersList;
+export default list;
