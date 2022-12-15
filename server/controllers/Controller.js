@@ -5,12 +5,23 @@ module.exports = {
   root: (req, res) => {
     res.send("This is a mock api for customer data.");
   },
+
   customers: (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-  With, Content-Type, Accept"
+    );
     const customers = getCustomers();
     res.json(customers);
   },
 
   addCustomer: (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-  With, Content-Type, Accept"
+    );
     const customers = getCustomers();
     const data = req.body;
 

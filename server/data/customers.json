@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "id": 0,
+    "firstName": "Harsh",
+    "lastName": "Sandhu",
+    "address": "Some Address",
+    "city": "Some City",
+    "state": "Some State",
+    "zip": "Some Zip"
+  }
+]

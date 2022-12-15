@@ -1,8 +1,8 @@
 const fs = require("fs");
+const jsonData = require("../data/customers.json");
 
 const getCustomers = () => {
-  const jsonData = fs.readFileSync("../data/customers.json", "utf8");
-  const customers = JSON.parse(jsonData);
+  const customers = jsonData;
   return customers;
 };
 

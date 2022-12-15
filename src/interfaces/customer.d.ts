@@ -1,8 +1,8 @@
 export interface CustomerI {
-  customerId: number;
+  id: number;
   firstName: string;
   lastName: string;
-  address: [];
+  address: string;
   city: string;
   state: string;
   zip: string;

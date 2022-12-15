@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 3001;
 
@@ -7,13 +8,18 @@ const controller = require("./controllers/controller");
 
 app.get("/", controller.root);
 app.get("/customers", controller.customers);
-app.post("/customers/add", controller.addCustomer);
+// app.post("/customers/add", controller.addCustomer);
 
-app.use((req, res) => {
+app.options("*", cors());
+app.use((req, res, next) => {
+  cors();
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-  With, Content-Type, Accept"
+  );
+  next();
   bodyParser.urlencoded({ extended: false });
-  res.type("text/plain");
-  res.status(404);
-  res.send("404 - Not Found");
 });
 
 app.listen(port, () => {
