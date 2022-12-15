@@ -8,6 +8,7 @@ const controller = require("./controllers/controller");
 
 app.get("/", controller.root);
 app.get("/customers", controller.customers);
+app.get("/customers/:id", controller.showCustomer);
 // app.post("/customers/add", controller.addCustomer);
 
 app.options("*", cors());
