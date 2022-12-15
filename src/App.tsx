@@ -32,7 +32,13 @@ export default () => {
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
           resources={[
-            { name: "customers", list: list, create: create, edit: edit },
+            {
+              name: "customers",
+              list: list,
+              create: create,
+              edit: edit,
+              canDelete: true,
+            },
           ]}
         />
       </RefineSnackbarProvider>
