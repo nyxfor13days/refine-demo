@@ -6,9 +6,13 @@ import {
   GlobalStyles,
   RefineSnackbarProvider,
   notificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
+import CustomersList from "./pages/customers/list";
 
 export default () => {
   const globalStyles = {
@@ -22,8 +26,12 @@ export default () => {
       <RefineSnackbarProvider>
         <Refine
           routerProvider={routerProvider}
-          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          dataProvider={dataProvider(import.meta.env.VITE_SERVER_URL)}
           notificationProvider={notificationProvider}
+          Layout={Layout}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          resources={[{ name: "customers", list: CustomersList }]}
         />
       </RefineSnackbarProvider>
     </ThemeProvider>
