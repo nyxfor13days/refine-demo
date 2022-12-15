@@ -1,8 +1,10 @@
 import type { CustomerI } from "../../interfaces/customer";
 import {
   DataGrid,
+  EditButton,
   GridColumns,
   List,
+  Stack,
   TagField,
   useDataGrid,
 } from "@pankod/refine-mui";
@@ -21,6 +23,19 @@ const columns: GridColumns<CustomerI> = [
     minWidth: 200,
     renderCell: (params) => {
       return <TagField value={params.value} />;
+    },
+  },
+  {
+    field: "actions",
+    headerName: "Actions",
+    flex: 1,
+    minWidth: 200,
+    renderCell: (params) => {
+      return (
+        <Stack direction="row" spacing={1}>
+          <EditButton hideText recordItemId={params.row.id} />
+        </Stack>
+      );
     },
   },
 ];
