@@ -1,6 +1,7 @@
 import type { CustomerI } from "../../interfaces/customer";
 import {
   DataGrid,
+  DeleteButton,
   EditButton,
   GridColumns,
   List,
@@ -34,6 +35,7 @@ const columns: GridColumns<CustomerI> = [
       return (
         <Stack direction="row" spacing={1}>
           <EditButton hideText recordItemId={params.row.id} />
+          <DeleteButton hideText recordItemId={params.row.id} />
         </Stack>
       );
     },
