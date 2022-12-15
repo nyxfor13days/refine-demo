@@ -1,20 +1,14 @@
 import type { CustomerI } from "../../interfaces/customer";
+import { v4 as uuidv4 } from "uuid";
 import { HttpError } from "@pankod/refine-core";
-import {
-  Box,
-  TextField,
-  Autocomplete,
-  useAutocomplete,
-  Create,
-} from "@pankod/refine-mui";
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
+import { Box, TextField, Create } from "@pankod/refine-mui";
+import { useForm } from "@pankod/refine-react-hook-form";
 
 export default () => {
   const {
     refineCore: { formLoading },
     saveButtonProps,
     register,
-    control,
     formState: { errors },
   } = useForm<CustomerI, HttpError>();
 
@@ -23,17 +17,20 @@ export default () => {
       <Box component="form" sx={{ display: "flex", flexDirection: "column" }}>
         <TextField
           required
+          error={!!errors.id}
           margin="normal"
           fullWidth
+          defaultValue={uuidv4()}
           id="id"
           label="Customer ID"
-          autoFocus
+          disabled
           {...register("id", {
             required: "Please provide Customer ID!",
           })}
         />
         <TextField
           required
+          error={!!errors.firstName}
           margin="normal"
           fullWidth
           id="firstName"
@@ -45,6 +42,7 @@ export default () => {
         />
         <TextField
           required
+          error={!!errors.lastName}
           margin="normal"
           fullWidth
           id="lastName"
@@ -55,6 +53,7 @@ export default () => {
         />
         <TextField
           required
+          error={!!errors.address}
           margin="normal"
           fullWidth
           id="address"
@@ -63,6 +62,7 @@ export default () => {
         />
         <TextField
           required
+          error={!!errors.city}
           margin="normal"
           fullWidth
           id="city"
@@ -71,6 +71,7 @@ export default () => {
         />
         <TextField
           required
+          error={!!errors.state}
           margin="normal"
           fullWidth
           id="state"
@@ -79,6 +80,7 @@ export default () => {
         />
         <TextField
           required
+          error={!!errors.zip}
           margin="normal"
           fullWidth
           id="zip"
