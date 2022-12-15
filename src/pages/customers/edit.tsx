@@ -1,28 +1,28 @@
 import type { CustomerI } from "../../interfaces/customer";
-import { v4 as uuidv4 } from "uuid";
-import { HttpError } from "@pankod/refine-core";
-import { Box, TextField, Create } from "@pankod/refine-mui";
+import type { HttpError } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
+import { Box, Edit, TextField } from "@pankod/refine-mui";
 
 export default () => {
   const {
-    refineCore: { formLoading },
+    refineCore: { formLoading, queryResult },
     saveButtonProps,
     register,
     formState: { errors },
   } = useForm<CustomerI, HttpError>();
 
   return (
-    <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+    <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
       <Box component="form" sx={{ display: "flex", flexDirection: "column" }}>
         <TextField
+          required
           error={!!errors.id}
           margin="normal"
           fullWidth
-          defaultValue={uuidv4()}
           id="id"
           label="Customer ID"
-          {...register("id")}
+          name="id"
+          defaultValue={queryResult?.data?.data.id}
         />
         <TextField
           required
@@ -31,7 +31,7 @@ export default () => {
           fullWidth
           id="firstName"
           label="First Name"
-          autoFocus
+          defaultValue={queryResult?.data?.data.firstName}
           {...register("firstName", {
             required: "Please enter your First Name!",
           })}
@@ -43,10 +43,12 @@ export default () => {
           fullWidth
           id="lastName"
           label="Last Name"
+          defaultValue={queryResult?.data?.data.lastName}
           {...register("lastName", {
             required: "Please enter your Last Name!",
           })}
         />
+
         <TextField
           required
           error={!!errors.address}
@@ -54,8 +56,12 @@ export default () => {
           fullWidth
           id="address"
           label="Address"
-          {...register("address", { required: "Please enter your Address!" })}
+          defaultValue={queryResult?.data?.data.address}
+          {...register("address", {
+            required: "Please enter your address!",
+          })}
         />
+
         <TextField
           required
           error={!!errors.city}
@@ -63,8 +69,12 @@ export default () => {
           fullWidth
           id="city"
           label="City"
-          {...register("city", { required: "Please enter your City!" })}
+          defaultValue={queryResult?.data?.data.city}
+          {...register("city", {
+            required: "Please enter your city!",
+          })}
         />
+
         <TextField
           required
           error={!!errors.state}
@@ -72,18 +82,25 @@ export default () => {
           fullWidth
           id="state"
           label="State"
-          {...register("state", { required: "Please enter your State!" })}
+          defaultValue={queryResult?.data?.data.state}
+          {...register("state", {
+            required: "Please enter your state!",
+          })}
         />
+
         <TextField
           required
           error={!!errors.zip}
           margin="normal"
           fullWidth
           id="zip"
-          label="Zip Code"
-          {...register("zip", { required: "Please enter your zip code!" })}
+          label="Zip"
+          defaultValue={queryResult?.data?.data.zip}
+          {...register("zip", {
+            required: "Please enter your zip!",
+          })}
         />
       </Box>
-    </Create>
+    </Edit>
   );
 };
