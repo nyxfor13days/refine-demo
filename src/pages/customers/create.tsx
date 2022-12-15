@@ -16,17 +16,13 @@ export default () => {
     <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
       <Box component="form" sx={{ display: "flex", flexDirection: "column" }}>
         <TextField
-          required
           error={!!errors.id}
           margin="normal"
           fullWidth
           defaultValue={uuidv4()}
           id="id"
           label="Customer ID"
-          disabled
-          {...register("id", {
-            required: "Please provide Customer ID!",
-          })}
+          {...register("id")}
         />
         <TextField
           required
